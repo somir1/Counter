@@ -3,8 +3,6 @@ app = Flask(__name__)
 app.secret_key = "DAcounter"
 
 # staring the session at 1 and when refrshes increase by 1
-
-
 @app.route('/')
 def startdashowindex():
     if "counts" not in session:
@@ -12,7 +10,7 @@ def startdashowindex():
     session["counts"] += 1
     return render_template('index.html')
 
-
+#calling the buttons and adding functionality by adding 2 and clearing the count 
 @app.route('/addbuttons', methods=["post"])
 def showdabuttons():
     if request.form["change"] == "add":
@@ -21,7 +19,7 @@ def showdabuttons():
         session["counts"] = 0
     return redirect('/')
 
-
+#kills the counts session 
 @app.route('/destroy')
 def killDasession():
     session.pop("counts")
